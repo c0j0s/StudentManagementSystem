@@ -25,10 +25,8 @@ namespace StudentManagementSystem_CodeFirst.Models
         public string FullAddress
             => $"{StreetName} {Details}, Singapore {PostalCode}";
 
-
-        public int StudentId { get; set; }
+        public string AdminNo { get; set; }
         public Student Student { get; set; }
-
     }
 
 }

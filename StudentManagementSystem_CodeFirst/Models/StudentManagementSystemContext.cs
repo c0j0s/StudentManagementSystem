@@ -20,12 +20,12 @@ namespace StudentManagementSystem_CodeFirst.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<StudentModules>()
-            .HasKey(sm => new { sm.StudentId, sm.ModuleId });
+            .HasKey(sm => new { sm.AdminNo, sm.ModuleId });
 
             modelBuilder.Entity<StudentModules>()
                 .HasOne(s => s.Student)
                 .WithMany(sm => sm.StudentModules)
-                .HasForeignKey(s => s.StudentId);
+                .HasForeignKey(s => s.AdminNo);
 
             modelBuilder.Entity<StudentModules>()
                 .HasOne(m => m.Module)
