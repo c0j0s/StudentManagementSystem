@@ -7,7 +7,8 @@ namespace StudentManagementSystem_CodeFirst.Models
 {
     public class StudentModules
     {
-        public int StudentId { get; set; }
+        
+        public string AdminNo { get; set; }
         public Student Student { get; set; }
         public string ModuleId { get; set; }
         public Module Module { get; set; }
