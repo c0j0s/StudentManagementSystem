@@ -31,6 +31,78 @@ namespace StudentManagementSystem_CodeFirst.Models
                 .HasOne(m => m.Module)
                 .WithMany(sm => sm.StudentModules)
                 .HasForeignKey(m => m.ModuleId);
+
+            modelBuilder.Entity<Diploma>().HasData(
+             new Diploma
+             {
+                 DiplomaId = "C36",
+                 Name = "Common ICT Programme"
+             },
+             new Diploma
+             {
+                 DiplomaId = "C35",
+                 Name = "Business & Financial Technology"
+             },
+             new Diploma
+             {
+                 DiplomaId = "C43",
+                 Name = "Business & Financial Technology"
+             },
+             new Diploma
+             {
+                 DiplomaId = "C54",
+                 Name = "Cybersecurity & Digital Forensics "
+             },
+             new Diploma
+             {
+                 DiplomaId = "C80",
+                 Name = "Infocomm & Security "
+             },
+             new Diploma
+             {
+                 DiplomaId = "C85",
+                 Name = "Information Technology  "
+             }
+            );
+
+            modelBuilder.Entity<Module>().HasData(
+             new Module
+             {
+                 ModuleId = "IT1010",
+                 Name = "Data Analysis & Visualisation"
+             },
+             new Module
+             {
+                 ModuleId = "IT1020",
+                 Name = "Fundamentals of Innovation & Enterprise"
+             },
+             new Module
+             {
+                 ModuleId = "IT1030",
+                 Name = "Infocomm Security"
+             },
+             new Module
+             {
+                 ModuleId = "IT1040",
+                 Name = "Network Technology"
+             },
+             new Module
+             {
+                 ModuleId = "IT1050",
+                 Name = "Web Development"
+             },
+             new Module
+             {
+                 ModuleId = "IT1060",
+                 Name = "Programming Essentials"
+             },
+             new Module
+             {
+                 ModuleId = "ITX150",
+                 Name = "App Development Project"
+             }
+            );
+
         }
 
     }
