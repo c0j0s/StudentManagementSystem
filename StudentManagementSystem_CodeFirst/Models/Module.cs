@@ -9,6 +9,8 @@ namespace StudentManagementSystem_CodeFirst.Models
     {
         public string ModuleId { get; set; }
         public string Name { get; set; }
+
+        public ICollection<StudentModules> StudentModules { get; set; }
     }
 
 }

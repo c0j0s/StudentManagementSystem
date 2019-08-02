@@ -11,5 +11,12 @@ namespace StudentManagementSystem_CodeFirst.Models
         public DateTime Dob { get; set; }
         public string Gender { get; set; }
         public string ContactNumber { get; set; }
+
+        public Address Address { get; set; }
+
+        public string DiplomaId { get; set; }
+        public Diploma Diploma { get; set; }
+
+        public ICollection<StudentModules> StudentModules { get; set; }
     }
 }

@@ -5,16 +5,12 @@ using System.Threading.Tasks;
 
 namespace StudentManagementSystem_CodeFirst.Models
 {
-    public class Address
+    public class StudentModules
     {
-        public int AddressId { get; set; }
-        public string StreetName { get; set; }
-        public string Details { get; set; }
-        public int PostalCode { get; set; }
-
         public int StudentId { get; set; }
         public Student Student { get; set; }
+        public string ModuleId { get; set; }
+        public Module Module { get; set; }
 
     }
-
 }
