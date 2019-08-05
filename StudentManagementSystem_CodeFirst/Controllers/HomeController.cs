@@ -57,13 +57,24 @@ namespace StudentManagementSystem_CodeFirst.Controllers
         #endregion
 
         #region Form handling Methods
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(
-            [Bind("AdminNo,Name,Dob,Gender,ContactNumber,DiplomaId,Address")] Student student)
-        {
-            return View();
-        }
+[HttpPost]
+[ValidateAntiForgeryToken]
+public async Task<IActionResult> Create(
+    [Bind("AdminNo,Name,Dob,Gender,ContactNumber,DiplomaId,Address")] Student student)
+{
+    if (ModelState.IsValid)
+    {
+        _context.Add(student);
+        await _context.SaveChangesAsync();
+        return RedirectToAction(nameof(Index));
+    }
+    else
+    {
+        //return to create form if model invalid
+        ViewData["DiplomaSelectionList"] = new SelectList(_context.Diploma, "DiplomaId", "DiplomaId", student.DiplomaId);
+        return View(student);
+    }
+}
 
         [HttpPost]
         [ValidateAntiForgeryToken]
