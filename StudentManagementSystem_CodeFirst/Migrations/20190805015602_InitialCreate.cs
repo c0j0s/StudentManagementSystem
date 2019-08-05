@@ -63,7 +63,7 @@ namespace StudentManagementSystem_CodeFirst.Migrations
                     StreetName = table.Column<string>(nullable: false),
                     Details = table.Column<string>(nullable: true),
                     PostalCode = table.Column<int>(nullable: false),
-                    AdminNo = table.Column<string>(nullable: true)
+                    AdminNo = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -73,7 +73,7 @@ namespace StudentManagementSystem_CodeFirst.Migrations
                         column: x => x.AdminNo,
                         principalTable: "Students",
                         principalColumn: "AdminNo",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -131,8 +131,7 @@ namespace StudentManagementSystem_CodeFirst.Migrations
                 name: "IX_Addresses_AdminNo",
                 table: "Addresses",
                 column: "AdminNo",
-                unique: true,
-                filter: "[AdminNo] IS NOT NULL");
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_StudentModules_ModuleId",
