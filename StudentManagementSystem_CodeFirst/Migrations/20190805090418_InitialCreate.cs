@@ -39,9 +39,9 @@ namespace StudentManagementSystem_CodeFirst.Migrations
                     AdminNo = table.Column<string>(maxLength: 7, nullable: false),
                     Name = table.Column<string>(nullable: false),
                     Dob = table.Column<DateTime>(nullable: false),
-                    Gender = table.Column<string>(maxLength: 1, nullable: true),
+                    Gender = table.Column<string>(maxLength: 1, nullable: false),
                     ContactNumber = table.Column<string>(nullable: false),
-                    DiplomaId = table.Column<string>(nullable: true)
+                    DiplomaId = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -51,7 +51,7 @@ namespace StudentManagementSystem_CodeFirst.Migrations
                         column: x => x.DiplomaId,
                         principalTable: "Diploma",
                         principalColumn: "DiplomaId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
