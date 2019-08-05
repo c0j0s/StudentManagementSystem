@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using StudentManagementSystem_CodeFirst.Models;
 
 namespace StudentManagementSystem_CodeFirst.Controllers
@@ -36,7 +37,9 @@ namespace StudentManagementSystem_CodeFirst.Controllers
 
         public async Task<IActionResult> Index()
         {
-            return View();
+            var studentContext = _context.Students.Include(s => s.Diploma)
+                                                    .Include(s => s.Address);
+            return View(await studentContext.ToListAsync());
         }
 
         public IActionResult Create()
