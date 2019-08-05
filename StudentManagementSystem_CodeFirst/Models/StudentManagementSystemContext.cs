@@ -19,6 +19,12 @@ namespace StudentManagementSystem_CodeFirst.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Address>()
+                .HasOne(i => i.Student)
+                .WithOne(c => c.Address)
+                .IsRequired()
+                .OnDelete(DeleteBehavior.Cascade);
+
             modelBuilder.Entity<StudentModules>()
             .HasKey(sm => new { sm.AdminNo, sm.ModuleId });
 
@@ -31,6 +37,7 @@ namespace StudentManagementSystem_CodeFirst.Models
                 .HasOne(m => m.Module)
                 .WithMany(sm => sm.StudentModules)
                 .HasForeignKey(m => m.ModuleId);
+
         }
 
     }
