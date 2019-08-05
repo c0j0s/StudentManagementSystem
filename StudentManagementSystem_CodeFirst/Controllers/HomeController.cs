@@ -61,7 +61,6 @@ namespace StudentManagementSystem_CodeFirst.Controllers
                     .ThenInclude(sm => sm.Module)
                 .Include(s => s.Address)
                 .FirstOrDefaultAsync(m => m.AdminNo == id);
-
             if (student == null)
             {
                 return NotFound();
@@ -220,4 +219,3 @@ namespace StudentManagementSystem_CodeFirst.Controllers
         #endregion
     }
 }
-
