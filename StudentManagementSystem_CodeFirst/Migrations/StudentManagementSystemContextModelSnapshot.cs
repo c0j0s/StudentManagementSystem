@@ -145,11 +145,13 @@ namespace StudentManagementSystem_CodeFirst.Migrations
                     b.Property<string>("ContactNumber")
                         .IsRequired();
 
-                    b.Property<string>("DiplomaId");
+                    b.Property<string>("DiplomaId")
+                        .IsRequired();
 
                     b.Property<DateTime>("Dob");
 
                     b.Property<string>("Gender")
+                        .IsRequired()
                         .HasMaxLength(1);
 
                     b.Property<string>("Name")
@@ -187,7 +189,8 @@ namespace StudentManagementSystem_CodeFirst.Migrations
                 {
                     b.HasOne("StudentManagementSystem_CodeFirst.Models.Diploma", "Diploma")
                         .WithMany("Students")
-                        .HasForeignKey("DiplomaId");
+                        .HasForeignKey("DiplomaId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("StudentManagementSystem_CodeFirst.Models.StudentModules", b =>
