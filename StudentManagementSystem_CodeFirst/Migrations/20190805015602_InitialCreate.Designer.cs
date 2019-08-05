@@ -10,7 +10,7 @@ using StudentManagementSystem_CodeFirst.Models;
 namespace StudentManagementSystem_CodeFirst.Migrations
 {
     [DbContext(typeof(StudentManagementSystemContext))]
-    [Migration("20190802032744_InitialCreate")]
+    [Migration("20190805015602_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,7 +27,8 @@ namespace StudentManagementSystem_CodeFirst.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("AdminNo");
+                    b.Property<string>("AdminNo")
+                        .IsRequired();
 
                     b.Property<string>("Details");
 
@@ -39,8 +40,7 @@ namespace StudentManagementSystem_CodeFirst.Migrations
                     b.HasKey("AddressId");
 
                     b.HasIndex("AdminNo")
-                        .IsUnique()
-                        .HasFilter("[AdminNo] IS NOT NULL");
+                        .IsUnique();
 
                     b.ToTable("Addresses");
                 });
@@ -181,7 +181,8 @@ namespace StudentManagementSystem_CodeFirst.Migrations
                 {
                     b.HasOne("StudentManagementSystem_CodeFirst.Models.Student", "Student")
                         .WithOne("Address")
-                        .HasForeignKey("StudentManagementSystem_CodeFirst.Models.Address", "AdminNo");
+                        .HasForeignKey("StudentManagementSystem_CodeFirst.Models.Address", "AdminNo")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("StudentManagementSystem_CodeFirst.Models.Student", b =>
