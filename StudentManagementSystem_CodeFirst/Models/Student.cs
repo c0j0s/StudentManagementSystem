@@ -23,6 +23,7 @@ namespace StudentManagementSystem_CodeFirst.Models
         public DateTime Dob { get; set; }
 
         //Since we only want "M" or "F"
+        [Required]
         [StringLength(1)]
         public string Gender { get; set; }
 
@@ -33,9 +34,10 @@ namespace StudentManagementSystem_CodeFirst.Models
         [Display(Name = "Handphone")]
         public string ContactNumber { get; set; }
 
-
         public Address Address { get; set; }
 
+        [Required]
+        [Display(Name = "Diploma")]
         public string DiplomaId { get; set; }
         public Diploma Diploma { get; set; }
 
