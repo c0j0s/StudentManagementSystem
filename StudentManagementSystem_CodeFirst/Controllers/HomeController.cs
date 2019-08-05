@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using StudentManagementSystem_CodeFirst.Models;
 
 namespace StudentManagementSystem_CodeFirst.Controllers
@@ -40,6 +41,7 @@ namespace StudentManagementSystem_CodeFirst.Controllers
 
         public IActionResult Create()
         {
+            ViewData["DiplomaSelectionList"] = new SelectList(_context.Diploma, "DiplomaId", "Name");
             return View();
         }
 
