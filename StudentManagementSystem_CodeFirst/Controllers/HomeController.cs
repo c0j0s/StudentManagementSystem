@@ -151,6 +151,11 @@ namespace StudentManagementSystem_CodeFirst.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(string id)
         {
+            var student = await _context.Students
+                                    .FirstOrDefaultAsync(s => s.AdminNo == id);
+
+            _context.Students.Remove(student);
+            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
