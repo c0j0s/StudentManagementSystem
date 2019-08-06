@@ -11,6 +11,50 @@
         <h4>Personal Details</h4>
 
         @*TODO Display student record here.*@
+        <dl class="row">
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.AdminNo)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.AdminNo)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.Dob)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Dob)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.Gender)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Gender)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.ContactNumber)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.ContactNumber)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.Address)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Address.FullAddress)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.Diploma)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Diploma.Name)
+            </dd>
+        </dl>
 
     </div>
     <div class="col">

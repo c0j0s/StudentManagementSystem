@@ -50,7 +50,22 @@ namespace StudentManagementSystem_CodeFirst.Controllers
 
         public async Task<IActionResult> Details(string id)
         {
-            return View();
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var student = await _context.Students
+                .Include(s => s.Diploma)
+                .Include(s => s.Address)
+                .FirstOrDefaultAsync(m => m.AdminNo == id);
+
+            if (student == null)
+            {
+                return NotFound();
+            }
+
+            return View(student);
         }
 
         public async Task<IActionResult> Edit(string id)
