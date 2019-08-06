@@ -39,7 +39,7 @@ namespace StudentManagementSystem_CodeFirst
             var connectionString = Configuration.GetConnectionString("StudentManagementSystemDatabase");
 
             services.AddDbContext<StudentManagementSystemContext>
-                (options => options.UseSqlServer(connectionString));
+                (options => options.UseSqlServer(connectionString, o => o.MaxBatchSize(100)));
 
         }
 

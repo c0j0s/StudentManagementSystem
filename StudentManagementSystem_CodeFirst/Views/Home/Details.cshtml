@@ -59,13 +59,72 @@
     </div>
     <div class="col">
 
-        @*TODO Display student modules here.*@
+@*TODO Display student modules here.*@
+<div class="row col">
+    <h4 class="col">Modules</h4>
+    @if (Enumerable.Count(ViewBag.ModuleSelectionList) > 0)
+    {
+        <button type="button" class="btn btn-primary float-right col-md-3" data-toggle="modal" data-target="#addModuleModal">
+            Add Module
+        </button>
+    }
+</div>
+<table class="table">
+    <tbody>
+        @if (Model.StudentModules.Count > 0)
+        {
+
+            @foreach (var item in Model.StudentModules)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Module.ModuleId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Module.Name)
+                    </td>
+                </tr>
+            }
+
+        }
+        else
+        {
+            <tr>
+                <td>
+                    No modules assigned.
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
 
     </div>
 </div>
 <div>
-
-    @*Add navigation link here.*@
-
     <a asp-action="Index">Back to List</a>
+</div>
+
+<div class="modal fade" id="addModuleModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <form asp-action="AddModules" asp-route-id="@Model.AdminNo">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add Modules</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label asp-for="StudentModules" class="control-label"></label>
+                        <select asp-for="StudentModules" class="form-control" asp-items="ViewBag.ModuleSelectionList"></select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </form>
+    </div>
 </div>

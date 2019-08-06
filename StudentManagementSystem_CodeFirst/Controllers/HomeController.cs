@@ -57,6 +57,8 @@ namespace StudentManagementSystem_CodeFirst.Controllers
 
             var student = await _context.Students
                 .Include(s => s.Diploma)
+                .Include(s => s.StudentModules)
+                    .ThenInclude(sm => sm.Module)
                 .Include(s => s.Address)
                 .FirstOrDefaultAsync(m => m.AdminNo == id);
 
@@ -65,6 +67,13 @@ namespace StudentManagementSystem_CodeFirst.Controllers
                 return NotFound();
             }
 
+            var studentModuleIds = student.StudentModules
+                                        .Select(c => c.ModuleId).ToList();
+
+            var modulesAvailable = _context.Modules
+                                        .Where(sm => !studentModuleIds.Contains(sm.ModuleId));
+
+            ViewData["ModuleSelectionList"] = new SelectList(modulesAvailable, "ModuleId", "Name");
             return View(student);
         }
 
@@ -163,6 +172,21 @@ namespace StudentManagementSystem_CodeFirst.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AddModules(string id, string[] StudentModules)
         {
+            if (!_context.Students.Any(s => s.AdminNo == id))
+            {
+                return NotFound();
+            }
+
+            if (StudentModules.Length > 0)
+            {
+                foreach (var moduleId in StudentModules)
+                {
+                    _context.Add(new StudentModules() { AdminNo = id, ModuleId = moduleId });
+                }
+
+                await _context.SaveChangesAsync();
+            }
+
             return RedirectToAction(nameof(Details), new { id = id });
         }
 
