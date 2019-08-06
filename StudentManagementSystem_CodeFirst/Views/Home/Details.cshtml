@@ -59,44 +59,49 @@
     </div>
     <div class="col">
 
-@*TODO Display student modules here.*@
-<div class="row col">
-    <h4 class="col">Modules</h4>
-    @if (Enumerable.Count(ViewBag.ModuleSelectionList) > 0)
-    {
-        <button type="button" class="btn btn-primary float-right col-md-3" data-toggle="modal" data-target="#addModuleModal">
-            Add Module
-        </button>
-    }
-</div>
-<table class="table">
-    <tbody>
-        @if (Model.StudentModules.Count > 0)
-        {
-
-            @foreach (var item in Model.StudentModules)
+        @*TODO Display student modules here.*@
+        <div class="row col">
+            <h4 class="col">Modules</h4>
+            @if (Enumerable.Count(ViewBag.ModuleSelectionList) > 0)
             {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Module.ModuleId)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Module.Name)
-                    </td>
-                </tr>
+                <button type="button" class="btn btn-primary float-right col-md-3" data-toggle="modal" data-target="#addModuleModal">
+                    Add Module
+                </button>
             }
 
-        }
-        else
-        {
-            <tr>
-                <td>
-                    No modules assigned.
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+            @*TODO Add Delete Button*@
+        </div>
+        <table class="table">
+            <tbody>
+                @if (Model.StudentModules.Count > 0)
+                {
+
+                    @foreach (var item in Model.StudentModules)
+                    {
+                        <tr>
+
+                            @*TODO Add CheckBox Here*@
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Module.ModuleId)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Module.Name)
+                            </td>
+                        </tr>
+                    }
+
+                }
+                else
+                {
+                    <tr>
+                        <td>
+                            No modules assigned.
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
 
     </div>
 </div>
