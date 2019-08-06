@@ -115,7 +115,36 @@ namespace StudentManagementSystem_CodeFirst.Controllers
             string id,
             [Bind("AdminNo,Name,Dob,Gender,ContactNumber,DiplomaId,Address")] Student student)
         {
-            return View(student);
+            if (id != student.AdminNo)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(student);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!StudentExists(student.AdminNo))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            else
+            {
+                ViewData["DiplomaSelectionList"] = new SelectList(_context.Diploma, "DiplomaId", "DiplomaId", student.DiplomaId);
+                return View(student);
+            }
         }
 
         [HttpPost]
