@@ -194,6 +194,20 @@ namespace StudentManagementSystem_CodeFirst.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteModules(string id, string[] StudentModules)
         {
+            if (!_context.Students.Any(s => s.AdminNo == id))
+            {
+                return NotFound();
+            }
+
+            if (StudentModules.Length > 0)
+            {
+                foreach (var moduleId in StudentModules)
+                {
+                    _context.StudentModules.Remove(new StudentModules { AdminNo = id, ModuleId = moduleId });
+                }
+
+                await _context.SaveChangesAsync();
+            }
             return RedirectToAction(nameof(Details), new { id = id });
         }
         #endregion
