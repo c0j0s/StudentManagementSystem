@@ -70,7 +70,22 @@ namespace StudentManagementSystem_CodeFirst.Controllers
 
         public async Task<IActionResult> Edit(string id)
         {
-            return View();
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var student = await _context.Students
+                .Include(s => s.Address)
+                .SingleOrDefaultAsync(s => s.AdminNo == id);
+
+            if (student == null)
+            {
+                return NotFound();
+            }
+
+            ViewData["DiplomaSelectionList"] = new SelectList(_context.Diploma, "DiplomaId", "Name", student.DiplomaId);
+            return View(student);
         }
         #endregion
 
